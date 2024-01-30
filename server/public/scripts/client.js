@@ -1,10 +1,11 @@
 console.log('script sourced.');
 
+
 function getQuotes() {
     // Axios GET request (http request for information from the server)
     axios({
         method: 'GET',
-        url: '/quotes}'
+        url: '/quotes' //👍bug#6
     }).then((response) => {
         // Code that will run on successful response
         // from the server.
@@ -14,15 +15,17 @@ function getQuotes() {
         let contentDiv = document.querySelector('#content');
         contentDiv.innerHTML = '';
         let i = 0;
-        // ??? Loop over array of quotes and append to the content div
+        // ??? Loop over array of quotes and append to the content div 👍bug#4
+        
         for(let quote of quotesFromServer) {
             contentDiv.innerHTML += `
                 <p>
-                    "${quote.text}" -${quote.author}
+                    "${quote.quote}" -${quote.author}
                 </p>
             `;
             i += 1;
         }
+        
     }).catch((error) => {
         console.log(error);
         alert('Something went wrong.');
@@ -39,17 +42,17 @@ function submitForm(event) {
     let author = document.querySelector('#authorInput').value;
     console.log('Inputs ', quote, author);
     let quoteForServer = {
-        text: quote,
+        quote: quote,
         author: author,
     };
-    // ???
+    // ??? 👍bug#5
     axios({
         method: 'POST',
         url: '/quotes', 
         data: quoteForServer
     }).then((response) => {
         console.log(response);
-        getQuote();
+        getQuotes();
     }).catch((error) => {
         console.log(error);
         alert('Something went wrong.');
