@@ -79,6 +79,11 @@ The axios url sourced in the html file was included underneath the sourced in cl
 
 The files would not be located this way before the path is incorrect. The public folder is within the server folder; therefore, it needs to be rewritten like --> `app.use(express.static('server/public'));`
 
+### Bug 10
+
+`const PORT = process.env.PORT || 5007;`
+
+The comments above this line in the server.js stated to use port 5001. I just changed the port number to 5001 instead.
 
 ## Extra Practice (Optional)
 
